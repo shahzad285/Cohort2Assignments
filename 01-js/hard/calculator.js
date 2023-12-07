@@ -44,15 +44,19 @@ class Calculator {
     return this.result;
   }
   calculate(str) {
+    //Remove all the spaces
     str = str.replace(/\s/g, '');
     let countBracketInitializations = 0;
+    //calculate total number of opening parenthesis
     for (let index = 0; index < str.length; index++) {
       if (str[index] == '(')
         countBracketInitializations++;
     }
     let startIndex = 0;
     let endIndex = 0;
+    //Loop through the parenthesis
     for (let index = 0; index < countBracketInitializations; index++) {
+      //Go to the inner most parenthesis and solve it  in loop till all the parenthesis are solved 
       for (let j = 0; j < str.length; j++) {
         if (str[j] == '(') {
           startIndex = j;
@@ -75,9 +79,9 @@ class Calculator {
     this.result = +fr;
   }
 
-
+// Solve the string to give final number
   solveString(subStr) {
-
+  // Solve all the / operators first then solve other operators as per BODMAS rule
     while (subStr.indexOf('/') > 0) {
       let i = subStr.indexOf('/');
       let bi = this.findLargestIndexLessThanSpecifiedIndex(subStr, i);
@@ -135,7 +139,7 @@ class Calculator {
     return subStr;
 
   }
-
+//Find index of any operator before the specified index
   findLargestIndexLessThanSpecifiedIndex(str, specifiedInd) {
     let resInd = -1;
     for (let i = 0; i < specifiedInd; i++) {
@@ -145,7 +149,7 @@ class Calculator {
     }
     return resInd;
   }
-
+//Find index of any operator after the specified index
   findsmallesIndexGreaterThanSpecifiedIndex(str, specifiedInd) {
     let resInd = -1;
     for (let i = specifiedInd + 1; i < str.length; i++) {
